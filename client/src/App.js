@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import NewPost from "./pages/NewPost"
 import NavBar from "./components/NavBar"
 import Home from "./home/Home"
+
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     // auto-login
-    fetch("http://localhost:3000/me").then((r) => {
+    fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -20,6 +22,8 @@ function App() {
   return (
     <>
       <NavBar user={user} setUser={setUser} />
+     <NewPost/>
+
       <main>
         {user ? (
           <Switch>
