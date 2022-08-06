@@ -1,51 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import SignUp from "./pages/SignUp"
-import Login from "./pages/Login"
-import NewPost from "./pages/NewPost"
-import NavBar from "./components/NavBar"
-import Home from "./home/Home"
-
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
-
   return (
-    <>
-      <NavBar user={user} setUser={setUser} />
-     <NewPost/>
-
-      <main>
-        {user ? (
-          <Switch>
-            <Route path="/">
-              <Home user={user}/>
-            </Route>
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path="/signup">
-              <SignUp setUser={setUser} />
-            </Route>
-            <Route path="/login">
-              <Login setUser={setUser} />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        )}
-      </main>
-    </>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
 
